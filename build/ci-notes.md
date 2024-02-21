@@ -29,22 +29,58 @@ deps are set at https://launchpad.net/%7Eethereum/+archive/ubuntu/ethereum/+edit
 
 ## Building Packages Locally (for testing)
 
-You need to run Ubuntu to do test packaging.
+### Prerequisites:
 
-Install any version of Go and Debian packaging tools:
+- Ubuntu system
+  
+- Any version of Go
+  
+- Debian packaging tools
 
-    $ sudo apt-get install build-essential golang-go devscripts debhelper python-bzrlib python-paramiko
+### Installation:
 
-Create the source packages:
+    sudo apt-get install build-essential golang-go devscripts debhelper python-bzrlib python-paramiko
 
-    $ go run build/ci.go debsrc -workdir dist
+### Creating Source Packages:
 
-Then go into the source package directory for your running distribution and build the package:
+    go run build/ci.go debsrc -workdir dist
 
-    $ cd dist/ethereum-unstable-1.9.6+bionic
-    $ dpkg-buildpackage
+### Building the Package:
+1.Navigate to the source package directory for your distribution:
 
-Built packages are placed in the dist/ directory.
+    cd dist/ethereum-unstable-1.9.6+bionic
 
-    $ cd ..
-    $ dpkg-deb -c geth-unstable_1.9.6+bionic_amd64.deb
+2. Build the package:
+
+       dpkg-buildpackage
+
+### Built Package Location:
+
+Built packages are placed in the `dist` directory.
+
+    cd ..
+    dpkg-deb -c geth-unstable_1.9.6+bionic_amd64.deb
+
+### Using a Virtual Environment (Recommended)
+
+To isolate dependencies and avoid conflicts, it is highly recommended to use a virtual environment for this process. 
+You can create one using `venv` or `virtualenv`. Refer to the following documentation for more information:
+
+- `venv`: https://docs.python.org/3/tutorial/venv.html
+
+- `virtualenv`: https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
+
+### Alternatives to `apt-get`:
+
+While `apt-get` is used in this example, you can also use other package managers like `apt` or `dpkg` to achieve the same results.
+Refer to your system's documentation for specific instructions.
+
+
+
+
+
+
+
+
+
+
